@@ -1,0 +1,312 @@
+:root {
+    --primary: #0A84FF; /* iOS 18 Blue */
+    --primary-hover: #007AFF;
+    --background: #000000;
+    --surface: rgba(40, 40, 40, 0.45); /* Frost base */
+    --surface-hover: rgba(55, 55, 55, 0.55);
+    --text: #ffffff;
+    --text-muted: rgba(235, 235, 245, 0.6);
+    --danger: #FF453A;
+    --success: #32D74B;
+    --border: rgba(255, 255, 255, 0.15);
+    --border-highlight: rgba(255, 255, 255, 0.25);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* iOS 18 Apple-style dynamic mesh background */
+body {
+    background-color: #000000;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Creating vibrant iOS 18 style fluid orbs in the background */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    animation: float 20s infinite ease-in-out alternate;
+}
+
+body::before {
+    top: -10%; left: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(10, 132, 255, 0.6), rgba(94, 92, 230, 0.2));
+}
+
+body::after {
+    bottom: -10%; right: -10%;
+    width: 70vw; height: 70vw;
+    background: radial-gradient(circle, rgba(213, 62, 118, 0.5), rgba(255, 69, 58, 0.1));
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(8%, 10%) scale(1.1); }
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    flex-grow: 1;
+    position: relative;
+    z-index: 1;
+}
+
+/* iOS Liquid/Acrylic Glass utility */
+.glass, .card, nav {
+    background: var(--surface);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-highlight);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+    border-radius: 24px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(0.97);
+}
+
+.nav-links a.btn-danger {
+    color: var(--danger);
+}
+.nav-links a.btn-danger:hover {
+    background: rgba(255, 69, 58, 0.15);
+}
+
+/* Cards */
+.card {
+    padding: 2.5rem;
+}
+.card:hover {
+    background: var(--surface-hover);
+    transform: translateY(-3px);
+}
+
+/* Buttons iOS Style */
+button, .btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(10, 132, 255, 0.3);
+}
+
+button:hover, .btn:hover {
+    background: var(--primary-hover);
+    transform: scale(0.97);
+}
+
+button:active, .btn:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+.btn-danger {
+    background: rgba(255, 69, 58, 0.1);
+    color: var(--danger);
+    box-shadow: none;
+}
+.btn-danger:hover {
+    background: var(--danger);
+    color: white;
+    box-shadow: 0 4px 14px rgba(255, 69, 58, 0.3);
+}
+
+/* Forms iOS Style */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Fix dropdown option rendering in dark mode */
+select option {
+    background-color: #1c1c1e; /* iOS dark mode menu color */
+    color: #ffffff;
+}
+
+/* Tables iOS Style */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5rem;
+}
+
+th, td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.95rem;
+}
+
+th {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+th:first-child, td:first-child { padding-left: 0.5rem; }
+th:last-child, td:last-child { padding-right: 0.5rem; }
+
+tr { transition: background 0.2s ease; }
+tr:hover td { background: rgba(255, 255, 255, 0.04); }
+
+/* Flash Alerts */
+.alert {
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+
+.alert-danger {
+    background: rgba(255, 69, 58, 0.15);
+    border: 1px solid rgba(255, 69, 58, 0.3);
+    color: #FF453A;
+}
+
+.alert-success {
+    background: rgba(50, 215, 75, 0.15);
+    border: 1px solid rgba(50, 215, 75, 0.3);
+    color: #32D74B;
+}
+
+/* Grids */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Add row btn variant */
+.add-row-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--primary);
+    box-shadow: none;
+    border: none;
+    margin-bottom: 1rem;
+}
+.add-row-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Invoice specialized look */
+.bill-header {
+    text-align: left;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.bill-total {
+    text-align: right;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: var(--text);
+}
+
+/* High-end footer */
+footer {
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    background: rgba(20, 20, 20, 0.6);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+}
