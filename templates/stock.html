@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <h2 style="margin: 0;">Stock Summary</h2>
+        <div style="margin-top: 0.5rem; color: var(--text-muted);">
+            Total Items: <strong>{{ total_items }}</strong> | Total Stock: <strong>{{ total_stock }}</strong>
+        </div>
+    </div>
+    <a href="{{ url_for('add_item') }}" class="btn">+ Add New Item</a>
+</div>
+
+<div class="card">
+    <h2 style="margin-bottom: 1rem;">Inventory Directory</h2>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pid, item in stock.items() %}
+                <tr>
+                    <td style="color: var(--text-muted);">#{{ pid }}</td>
+                    <td style="font-weight: 500;">{{ item.name }}</td>
+                    <td>₹{{ item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>
+                        {% if item.quantity > 50 %}
+                        <span style="color: var(--success);">In Stock</span>
+                        {% elif item.quantity > 0 %}
+                        <span style="color: #d97706;">Low Stock</span>
+                        {% else %}
+                        <span style="color: var(--danger);">Out of Stock</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('edit_item', pid=pid) }}" style="color: var(--primary); text-decoration: none; font-weight: 500;">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

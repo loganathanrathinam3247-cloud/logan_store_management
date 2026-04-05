@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card glass" style="max-width: 400px; margin: 5rem auto;">
+    <h2 style="text-align: center; margin-bottom: 2rem;" class="brand">Admin Login</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" required placeholder="Enter admin">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required placeholder="Enter adminbba">
+        </div>
+        <button type="submit" style="width: 100%;">Secure Login</button>
+    </form>
+</div>
+{% endblock %}

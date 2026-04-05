@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="glass card" style="max-width: 600px; margin: 2rem auto; background: var(--surface);">
+    <div class="bill-header">
+        <h1 class="brand" style="font-size: 2.5rem;">INVOICE</h1>
+        <p style="color: var(--text-muted);">VIT MALIKAI KADAI Management System</p>
+    </div>
+    
+    <div style="margin-bottom: 2rem; display: flex; justify-content: space-between;">
+        <div>
+            <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Customer Info</p>
+            <h3>{{ bill.customer_name }}</h3>
+        </div>
+        <div style="text-align: right;">
+            <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Date & Time</p>
+            <p>{{ bill.time }}</p>
+        </div>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="border-bottom: 2px solid var(--border);">
+                <th style="text-align: left; padding: 1rem 0;">Item Name</th>
+                <th style="padding: 1rem 0;">Price</th>
+                <th style="padding: 1rem 0;">Qty</th>
+                <th style="text-align: right; padding: 1rem 0;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in bill.purchased_items %}
+            <tr>
+                <td style="padding: 1rem 0;">{{ item.name }}</td>
+                <td style="text-align: center;">₹{{ item.price }}</td>
+                <td style="text-align: center;">{{ item.quantity }}</td>
+                <td style="text-align: right;">₹{{ item.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="bill-total">
+        Grand Total: <span>₹{{ bill.total_amount }}</span>
+    </div>
+    
+    <div style="margin-top: 3rem; text-align: center;">
+        <button onclick="window.print()" class="btn" style="margin-right: 1rem;">Print Bill</button>
+        <a href="{{ url_for('sales') }}" class="btn" style="background: var(--surface); border: 1px solid var(--border);">New Sale</a>
+    </div>
+</div>
+{% endblock %}

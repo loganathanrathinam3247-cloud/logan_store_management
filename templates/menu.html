@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="margin-bottom: 2rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Dashboard Overview</h1>
+
+<div class="grid">
+    <div class="card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 2rem;">
+        <h2 class="brand" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">Stock Status</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">View and manage your product inventory, track low stock, and add new items.</p>
+        <a href="{{ url_for('stock') }}" class="btn" style="margin-top: auto;">Open Inventory</a>
+    </div>
+
+    <div class="card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 2rem;">
+        <h2 class="brand" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">Record Sales</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">Process new customer transactions, calculate totals, and generate dynamic bills.</p>
+        <a href="{{ url_for('sales') }}" class="btn" style="margin-top: auto;">New Transaction</a>
+    </div>
+
+    <div class="card" style="display: flex; flex-direction: column; align-items: flex-start; padding: 2rem;">
+        <h2 class="brand" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">History</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">Review past purchases, see transaction timestamps, and analyze previous sales.</p>
+        <a href="{{ url_for('history') }}" class="btn" style="margin-top: auto;">View History</a>
+    </div>
+</div>
+{% endblock %}

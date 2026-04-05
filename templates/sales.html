@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="glass card" style="max-width: 800px; margin: 0 auto;">
+    <h2 class="brand" style="margin-bottom: 2rem;">Record Sales Transaction</h2>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" name="customer_name" required placeholder="Enter customer name...">
+        </div>
+
+        <div id="items-container">
+            <div class="grid" style="grid-template-columns: 2fr 1fr; margin-bottom: 1rem;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label>Select Product</label>
+                    <select name="product_id" required>
+                        <option value="">-- Choose Item --</option>
+                        {% for pid, info in stock.items() %}
+                            <option value="{{ pid }}">{{ info.name }} (₹{{ info.price }}) - Stock: {{ info.quantity }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label>Quantity</label>
+                    <input type="number" name="quantity" min="1" required placeholder="Qty">
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" class="btn add-row-btn" onclick="addItemRow()">+ Add Another Item</button>
+        <button type="submit" style="width: 100%; margin-top: 1rem; font-size: 1.1rem; padding: 1rem;">Complete Sale & Generate Bill</button>
+    </form>
+</div>
+
+<script>
+    function addItemRow() {
+        const container = document.getElementById('items-container');
+        const firstRow = container.firstElementChild.cloneNode(true);
+        // Clear the quantity input for the cloned row
+        firstRow.querySelector('input[type="number"]').value = '';
+        container.appendChild(firstRow);
+    }
+</script>
+{% endblock %}

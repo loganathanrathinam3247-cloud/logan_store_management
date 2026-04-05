@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT MALIKAI KADAI Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% if session.get('logged_in') %}
+    <nav class="glass">
+        <div class="brand">VIT MALIKAI KADAI</div>
+        <div class="nav-links">
+            <a href="{{ url_for('menu') }}">Dashboard</a>
+            <a href="{{ url_for('stock') }}">Stock</a>
+            <a href="{{ url_for('sales') }}">New Sale</a>
+            <a href="{{ url_for('history') }}">History</a>
+            <a href="{{ url_for('logout') }}" class="btn-danger">Logout</a>
+        </div>
+    </nav>
+    {% endif %}
+
+    <div class="container animate-fade-in">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+    
+    <footer style="text-align: center; padding: 2rem 0 1rem 0; color: var(--text-muted); font-size: 0.85rem; margin-top: auto;">
+        <div>&copy; 2026 Developed by Loganathan. All Rights Reserved.</div>
+        <div style="margin-top: 0.5rem;">For more projects contact <a href="https://github.com/loganathanrathinam3247-cloud" target="_blank" style="color: var(--primary); text-decoration: underline;">GitHub</a></div>
+    </footer>
+</body>
+</html>
